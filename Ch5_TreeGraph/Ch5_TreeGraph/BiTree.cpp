@@ -27,4 +27,12 @@ Node::Node()
 	value = 0; 
 	left = NULL; 
 	right = NULL;
+	height = 0;	// no value, no height
+}
+
+Node::Node(int v):value(v) 
+{
+	left = NULL;
+	right = NULL;
+	height = 1;
 }
