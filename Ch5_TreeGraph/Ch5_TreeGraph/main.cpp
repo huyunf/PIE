@@ -118,7 +118,47 @@ Node* insert(Node* root, Node* x)
 	return root;
 }
 
-#define SIZE 100
+// PreOrder_Traversal
+// Self, Left, Right
+void PreOrder_Traversal(Node* root)
+{
+	if (root == NULL) return;
+
+	cout << root->getValue() << endl;
+
+	PreOrder_Traversal(root->getLeft());
+
+	PreOrder_Traversal(root->getRight());
+}
+/*
+void preorderTraversal( Node root ){
+	NodeStack stack = new NodeStack();
+	stack.push( root );
+	while( stack.size() > 0 ){
+		Node curr = stack.pop();
+		curr.printValue();
+		Node n = curr.getRight();
+		if( n != null ) stack.push( n );
+		n = curr.getLeft();
+		if( n != null ) stack.push( n );
+	}
+}*/
+
+// InOrder_Traversal
+// Left, Self, Right
+void InOrder_Traversal(Node* root)
+{
+
+}
+
+// PostOrder_Traversal
+// Left, Right, Self
+void PostOrder_Traversal(Node* root)
+{
+
+}
+
+#define SIZE 20
 
 int main()
 {
@@ -135,6 +175,8 @@ int main()
 
 		root = insert(root, t);
 	}
+
+	PreOrder_Traversal(root);
 
 	return 0;
 }
