@@ -2,24 +2,16 @@
 
 bool Node::setLeft(Node* l)
 {
-	if (l) {
-		left = l;
-		return true;
-	}
-	else {
-		return false;
-	}
+
+	left = l;
+	return true;
+	
 }
 
 bool Node::setRight(Node* r)
 {
-	if (r) {
-		right = r;
-		return true;
-	}
-	else {
-		return false;
-	}
+	right = r;
+	return true;
 }
 
 Node::Node()

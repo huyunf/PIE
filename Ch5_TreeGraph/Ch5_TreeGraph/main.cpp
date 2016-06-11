@@ -22,13 +22,14 @@ Node* rotate_right(Node* x)
 	Node* T2 = y->getRight();
 
 	x->setLeft(T2);
+
+	height = max(x->getRight() == NULL ? 0 : x->getRight()->getHeight(), x->getLeft() == NULL ? 0 : x->getLeft()->getHeight()) + 1;
+	x->setHeight(height);
+
 	y->setRight(x);
 
-	height = max(y->getRight() == NULL ? 0 : y->getRight()->getHeight(), y->getLeft() == NULL ? 0 : y->getLeft()->getHeight());
+	height = max(y->getRight() == NULL ? 0 : y->getRight()->getHeight(), y->getLeft() == NULL ? 0 : y->getLeft()->getHeight()) + 1;
 	y->setHeight(height);
-
-	height = max(x->getRight() == NULL ? 0 : x->getRight()->getHeight(), x->getLeft() == NULL ? 0 : x->getLeft()->getHeight());
-	x->setHeight(height);
 
 	return y;
 }
@@ -48,13 +49,14 @@ Node* rotate_left(Node* x)
 	Node* T2 = y->getLeft();
 
 	x->setRight(T2);
+	
+	height = max(x->getRight() == NULL ? 0 : x->getRight()->getHeight(), x->getLeft() == NULL ? 0 : x->getLeft()->getHeight()) + 1;
+	x->setHeight(height);
+
 	y->setLeft(x);
 
-	height = max(y->getRight() == NULL ? 0 : y->getRight()->getHeight(), y->getLeft() == NULL ? 0 : y->getLeft()->getHeight());
+	height = max(y->getRight() == NULL ? 0 : y->getRight()->getHeight(), y->getLeft() == NULL ? 0 : y->getLeft()->getHeight()) + 1;
 	y->setHeight(height);
-
-	height = max(x->getRight() == NULL ? 0 : x->getRight()->getHeight(), x->getLeft() == NULL ? 0 : x->getLeft()->getHeight());
-	x->setHeight(height);
 
 	return y;
 }
@@ -75,13 +77,13 @@ Node* insert(Node* root, Node* x)
 			if (NULL == root->getLeft())
 				root->setLeft(x);
 			else
-				insert(root->getLeft(), x);
+				root->setLeft(insert(root->getLeft(), x));
 		}
 		else {
 			if (NULL == root->getRight())
 				root->setRight(x);
 			else
-				insert(root->getRight(), x);
+				root->setRight(insert(root->getRight(), x));
 		}
 	}
 
@@ -95,33 +97,36 @@ Node* insert(Node* root, Node* x)
 
 	// LL
 	if (balance > 1 && x->getValue() <= root->getLeft()->getValue())
-		root = rotate_right(root);
+		return rotate_right(root);
 
 	// LR
-	if (balance > 1 && x->getValue() < root->getLeft()->getValue()) {
+	if (balance > 1 && x->getValue() > root->getLeft()->getValue()) {
 		root->setLeft(rotate_left(root->getLeft()));
-		root = rotate_right(root);
+		return rotate_right(root);
 	}
 
 	// RR
 	if (balance < -1 && x->getValue() >= root->getRight()->getValue())
-		root = rotate_left(root);
+		return rotate_left(root);
 
 	// RL
 	if (balance < -1 && x->getValue() < root->getRight()->getValue()) {
 		root->setRight(rotate_right(root->getRight()));
-		root = rotate_left(root);
+		return rotate_left(root);
 	}
 
 	return root;
 }
 
-#define SIZE 20
+#define SIZE 100
 
 int main()
 {
-	unsigned int ary[SIZE] = { 5, 2, 8, 12, 4, 34, 9, 17, 18, 7,
-							10, 1, 6, 8, 23, 3, 87, 45, 22, 5 };
+	unsigned int ary[SIZE];
+
+	for (int i = 0; i < SIZE; i++) {
+		ary[i] = i;
+	}
 
 	Node* root = NULL;
 
