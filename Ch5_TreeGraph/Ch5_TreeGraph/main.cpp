@@ -1,6 +1,6 @@
 #include <iostream>
 #include "BiTree.h"
-
+#include <stack>
 using namespace std;
 
 inline int max(int a, int b)
@@ -158,6 +158,27 @@ void PostOrder_Traversal(Node* root)
 
 }
 
+void Get_Parents(Node* root, int v, stack<Node*> &s)
+{
+	Node* n = root;
+	while (1)
+	{
+		if (n == NULL) {
+			cout << "Could not find Node with value: " << v << endl;
+			return;
+		}
+		if (n->getValue() == v)
+			return;
+
+		s.push(n);
+
+		if (n->getValue() < v)
+			n = n->getRight();
+		else
+			n = n->getLeft();
+	}
+}
+
 #define SIZE 20
 
 int main()
@@ -177,6 +198,18 @@ int main()
 	}
 
 	PreOrder_Traversal(root);
+
+	stack<Node*> s0;
+	Get_Parents(root, 5, s0);
+
+	while(s0.size()){
+		
+		Node* p = s0.top();
+		s0.pop();
+		cout << p->getValue() << endl;
+
+	}
+
 
 	return 0;
 }
