@@ -145,6 +145,7 @@
     <ClCompile Include="FindTheFirst_NonRep_Char.cpp" />
     <ClCompile Include="RemoveSpecifiedCharacters.cpp" />
     <ClCompile Include="ReverseWords.cpp" />
+    <ClCompile Include="String_Int_Convert.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global_ctrl.h" />

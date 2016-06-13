@@ -20,6 +20,9 @@
     <ClCompile Include="ReverseWords.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="String_Int_Convert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global_ctrl.h">
