@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bisearch.cpp" />
+    <ClCompile Include="CombineString.cpp" />
     <ClCompile Include="PermutationsofString.cpp" />
   </ItemGroup>
   <ItemGroup>

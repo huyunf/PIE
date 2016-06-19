@@ -17,6 +17,9 @@
     <ClCompile Include="PermutationsofString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CombineString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global.h">
