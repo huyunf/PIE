@@ -145,6 +145,7 @@
     <ClCompile Include="bisearch.cpp" />
     <ClCompile Include="CombineString.cpp" />
     <ClCompile Include="PermutationsofString.cpp" />
+    <ClCompile Include="TeleWord.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global.h" />
