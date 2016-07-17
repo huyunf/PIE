@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+using namespace std;
 
 template <class Type>
 class sort {
@@ -14,12 +15,18 @@ public:
 
 	void insert_sort(void);
 
+	void quick_sort(void);
+
 private:
 	std::vector<Type> origin_ary;
 
 	std::vector<Type> selected_sort_ary;
 
 	std::vector<Type> insert_sort_ary;
+
+	std::vector<Type> quick_sort_ary;
+	void q_sort(typename std::vector<Type>::iterator beg, typename std::vector<Type>::iterator end);
+
 };
 
 template <typename Type>
@@ -76,4 +83,54 @@ void sort<Type>::insert_sort(void)
 	}
 
 }
+
+template <typename Type>
+void sort<Type>::q_sort(typename std::vector<Type>::iterator beg, typename std::vector<Type>::iterator end)
+{
+	if (beg == end) return;
+
+	Type pivot = *beg;
+
+	vector<Type>::iterator iter_fwd = beg + 1;
+	vector<Type>::iterator iter_bwd = end;
+	vector<Type>::iterator iter_pivot;
+
+	while(iter_fwd != iter_bwd)
+	{
+		if(*iter_fwd < pivot)
+		{
+			iter_fwd++;
+		}
+		else
+		{
+			swap(*iter_fwd, *iter_bwd);
+			iter_bwd--;
+		}
+	}
+
+	if (*iter_fwd > pivot) iter_pivot = iter_fwd-1;
+	else iter_pivot = iter_fwd;
+	
+	swap(*beg, *iter_pivot);
+
+	if (beg != iter_pivot)	q_sort(beg, iter_pivot - 1);	// left
+	if (end != iter_pivot)	q_sort(iter_pivot+1, end);	// right
+}
+
+template <typename Type>
+void sort<Type>::quick_sort(void)
+{
+	quick_sort_ary = origin_ary;
+
+	q_sort(quick_sort_ary.begin(), quick_sort_ary.end()-1);
+}
+
+
+
+
+
+
+
+
+
 

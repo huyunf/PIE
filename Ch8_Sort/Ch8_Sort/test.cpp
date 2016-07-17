@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define ARY_SIZE 10
+#define ARY_SIZE 30
 
 int main()
 {
@@ -25,6 +25,8 @@ int main()
 	s.selected_sort();
 
 	s.insert_sort();
+
+	s.quick_sort();
 
 	return 0;
 }
